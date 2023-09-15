@@ -21,10 +21,15 @@ int main() {
         if (IsKeyDown(KEY_D)) direction.x += 1.0;
         if (IsKeyDown(KEY_W)) direction.y -= 1.0;
         if (IsKeyDown(KEY_S)) direction.y += 1.0;
-        if (Vector2Length(direction) != 0.0) {
-            
-            map_position = Vector2Subtract(map_position, Vector2Scale(Vector2Normalize(direction), speed));
-        }
+        if (Vector2Length(direction) != 0.0) 
+            map_position = Vector2Subtract(
+                map_position, 
+                Vector2Scale(
+                    Vector2Normalize(direction), 
+                    speed
+                    )
+                );
+        
         
         
         DrawTextureEx(map, map_position , 0, 4, WHITE);
