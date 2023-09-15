@@ -1,4 +1,5 @@
 #include "raylib.h"
+#include "raymath.h"
 
 int main() {
     const int WINDOW_WIDTH {384};
@@ -6,7 +7,6 @@ int main() {
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Top Down Game");
 
     Texture2D map = LoadTexture("nature_tileset/OpenWorldMap24x24.png");
-
 
     SetTargetFPS(60);
     while (!WindowShouldClose()) {
@@ -21,5 +21,5 @@ int main() {
         EndDrawing();
     }
     UnloadTexture(map);
-    CloseWindow()
+    CloseWindow();
 }
