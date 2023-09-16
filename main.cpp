@@ -2,6 +2,7 @@
 #include "raymath.h"
 #include "character.h"
 #include "prop.h"
+#include "enemy.h"
 
 int main() {
     const int WINDOW_WIDTH {384};
@@ -17,6 +18,12 @@ int main() {
     Prop props[2] {
         Prop {Vector2 {600.f, 300.f}, LoadTexture("nature_tileset/Rock.png")},
         Prop {Vector2 {400.f, 500.f}, LoadTexture("nature_tileset/Log.png")}
+    };
+
+    Enemy goblin{
+        Vector2 {}, 
+        LoadTexture("characters/goblin_idle_spritesheet.png"), 
+        LoadTexture("characters/goblin_run_spritesheet.png")
     };
 
     SetTargetFPS(60);
@@ -36,6 +43,7 @@ int main() {
         }
 
         knight.tick(GetFrameTime());
+        
         // Check map bounds
         if (knight.getWorldPosition().x < 0.f ||
             knight.getWorldPosition().y < 0.f ||
@@ -50,6 +58,8 @@ int main() {
                 knight.undoMovement();
             }
         }
+
+        goblin.tick(GetFrameTime());
         
         /* END LOGIC */
         EndDrawing();
