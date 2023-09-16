@@ -10,6 +10,12 @@ int main() {
     Vector2 map_position {0.0, 0.0};
     float speed {4.0};
 
+    Texture2D knight = LoadTexture("characters/knight_idle_spritesheet.png");
+    Vector2 knight_position {
+        (float)WINDOW_WIDTH / 2.0f - (0.5f * (float)knight.width/6.0f) * 4.0f,
+        (float)WINDOW_HEIGHT / 2.0f - (0.5f * (float)knight.height) * 4.0f
+    };
+
     SetTargetFPS(60);
     while (!WindowShouldClose()) {
         BeginDrawing();
@@ -30,13 +36,20 @@ int main() {
                     )
                 );
         
-        
-        
+        // Draw the map
         DrawTextureEx(map, map_position , 0, 4, WHITE);
+        
+        // Draw the character
+        Rectangle source {0.f, 0.f, (float)knight.width/6.f, (float)knight.height};
+        Rectangle destination {
+            knight_position.x, knight_position.y, 
+            (float)knight.width/6.f * 4.f, (float)knight.height * 4.f};
+        DrawTexturePro(knight, source, destination, Vector2{}, 0.f, WHITE);
         
         /* END LOGIC */
         EndDrawing();
     }
     UnloadTexture(map);
+    UnloadTexture(knight);
     CloseWindow();
 }
