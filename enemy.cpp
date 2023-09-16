@@ -1,7 +1,10 @@
 #include "enemy.h"
 
-Enemy::Enemy(Vector2 pos, Texture2D idle_tex, Texture2D run_tex):
-    world_position {pos}, texture {idle_tex}, idle {idle_tex}, run {run_tex} {
+Enemy::Enemy(Vector2 pos, Texture2D idle_tex, Texture2D run_tex) {
+        world_position = pos;
+        texture = idle_tex;
+        run = run_tex;
+        
         width = texture.width / max_frames;
         height = texture.height;
 }
@@ -20,17 +23,4 @@ void Enemy::tick(float deltaTime){
     Rectangle source {width * frame, 0.f, right_left * width, height};
     Rectangle destination {screen_position.x, screen_position.y, width * scale, height * scale};
     DrawTexturePro(texture, source, destination, Vector2 {}, 0.f, WHITE);
-}
-
-void Enemy::undoMovement(){
-    world_position = world_position_last_frame;
-}
-
-Rectangle Enemy::getCollisionRec(){
-    return Rectangle{
-        screen_position.x,
-        screen_position.y,
-        width * scale,
-        height * scale
-    };
 }
