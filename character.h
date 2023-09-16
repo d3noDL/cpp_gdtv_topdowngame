@@ -21,5 +21,5 @@ class Character {
         float speed {4.f};
         float width {};
         float height {};
-        float scale {4.0f};
+        float scale {4.f};
 };
