@@ -3,8 +3,20 @@
 
 class Character {
     public:
+        Vector2 getWorldPosition() { return world_position; }
+            
         
     private:
+        Texture2D texture;
+        Texture2D idle;
+        Texture2D run;
+        Vector2 screen_position;
+        Vector2 world_position;
+        float right_left{1.f};
+        float running_time {};
+        float frame {};
+        const int max_frames {6};
+        const float update_time { 1.f/ 12.f};
 };
 
 int main() {
@@ -24,7 +36,7 @@ int main() {
         (float)WINDOW_HEIGHT / 2.0f - (0.5f * (float)knight.height) * 4.0f
     };
     // 1 : facing right, -1 : facing left
-    float right_left(1.f);
+    float right_left{1.f};
 
     // Animation variables
     float running_time {};
