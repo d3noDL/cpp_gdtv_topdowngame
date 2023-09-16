@@ -8,6 +8,7 @@ class BaseCharacter {
         Vector2 getWorldPosition() {return world_position;}
         void undoMovement();
         Rectangle getCollisionRec();
+        virtual void tick(float deltaTime); // Virtual == can be overridden
     protected:
         Texture2D texture {LoadTexture("characters/knight_idle_spritesheet.png")};
         Texture2D idle {LoadTexture("characters/knight_idle_spritesheet.png")};
