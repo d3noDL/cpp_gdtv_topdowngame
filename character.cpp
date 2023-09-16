@@ -1,15 +1,13 @@
 #include "character.h"
 #include "raymath.h"
 
-Character::Character(){
+Character::Character(int winWidth, int winHeight){
     width = texture.width / max_frames;
     height = texture.height;
-}
 
-void Character::setScreenPosition(int winWidth, int winHeight){
     screen_position = {
-        (float)winWidth / 2.0f - (0.5f * width) * 4.0f,
-        (float)winHeight / 2.0f - (0.5f * height) * 4.0f
+        static_cast<float>(winWidth) / 2.0f - (0.5f * width) * scale,
+        static_cast<float>(winHeight) / 2.0f - (0.5f * height) * scale
     };
 }
 
@@ -42,7 +40,7 @@ void Character::tick(float deltaTime){
     }
 
     Rectangle source {width * frame, 0.f, right_left * width, height};
-    Rectangle destination {screen_position.x, screen_position.y, width * 4.f, height * 4.f};
+    Rectangle destination {screen_position.x, screen_position.y, width * scale, height * scale};
     DrawTexturePro(texture, source, destination, Vector2 {}, 0.f, WHITE);
 }
 
