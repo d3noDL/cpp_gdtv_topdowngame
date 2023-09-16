@@ -1,6 +1,12 @@
 #include "raylib.h"
 #include "raymath.h"
 
+class Character {
+    public:
+        
+    private:
+};
+
 int main() {
     const int WINDOW_WIDTH {384};
     const int WINDOW_HEIGHT {384};
