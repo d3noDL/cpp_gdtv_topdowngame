@@ -3,8 +3,8 @@
 
 class Character {
     public:
-        Vector2 getWorldPosition() { return world_position; }
-            
+        Vector2 getWorldPosition() {return world_position;}
+        
         
     private:
         Texture2D texture;
@@ -16,7 +16,7 @@ class Character {
         float running_time {};
         float frame {};
         const int max_frames {6};
-        const float update_time { 1.f/ 12.f};
+        const float update_time {1.f/12.f};
 };
 
 int main() {
