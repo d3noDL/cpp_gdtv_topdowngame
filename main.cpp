@@ -14,7 +14,10 @@ int main() {
     
     Character knight(WINDOW_WIDTH, WINDOW_HEIGHT);
 
-    Prop rock(Vector2 {0.f, 0.f}, LoadTexture("nature_tileset/Rock.png"));
+    Prop props[2] {
+        Prop {Vector2 {600.f, 300.f}, LoadTexture("nature_tileset/Rock.png")},
+        Prop {Vector2 {400.f, 500.f}, LoadTexture("nature_tileset/Log.png")}
+    };
 
     SetTargetFPS(60);
     while (!WindowShouldClose()) {
@@ -27,7 +30,11 @@ int main() {
         // Draw the map
         DrawTextureEx(map, map_position , 0, map_scale, WHITE);
 
-        rock.Render(knight.getWorldPosition());
+        // Draw the props
+        for (auto prop : props) {
+            prop.Render(knight.getWorldPosition());
+        }
+
         knight.tick(GetFrameTime());
         // Check map bounds
         if (knight.getWorldPosition().x < 0.f ||
@@ -35,7 +42,14 @@ int main() {
             knight.getWorldPosition().x + WINDOW_WIDTH > map.width * map_scale||
             knight.getWorldPosition().y + WINDOW_HEIGHT > map.height * map_scale) {
                 knight.undoMovement();
+        }
+
+        // Check prop collisions
+        for (auto prop : props) {
+            if (CheckCollisionRecs(prop.getCollisionRec(knight.getWorldPosition()), knight.getCollisionRec())) {
+                knight.undoMovement();
             }
+        }
         
         /* END LOGIC */
         EndDrawing();
