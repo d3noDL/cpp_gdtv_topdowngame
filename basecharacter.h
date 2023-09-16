@@ -9,6 +9,7 @@ class BaseCharacter {
         void undoMovement();
         Rectangle getCollisionRec();
         virtual void tick(float deltaTime); // Virtual == can be overridden
+        virtual Vector2 getScreenPosition() = 0; // Pure Virtal function
     protected:
         Texture2D texture {LoadTexture("characters/knight_idle_spritesheet.png")};
         Texture2D idle {LoadTexture("characters/knight_idle_spritesheet.png")};
@@ -25,6 +26,7 @@ class BaseCharacter {
         float width {};
         float height {};
         float scale {4.f};
+        Vector2 velocity {};
 
 };
 

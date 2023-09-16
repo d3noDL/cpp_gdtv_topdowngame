@@ -9,8 +9,7 @@ class Character : public BaseCharacter {
         Character(int winWidth, int winHeight);
         Vector2 getScreenPosition() { return screen_position;}
         virtual void tick(float deltaTime) override; // Overriding BaseCharacter tick function
-    private:
-        
+    
 };
 
 #endif

@@ -13,22 +13,12 @@ Character::Character(int winWidth, int winHeight){
 
 void Character::tick(float deltaTime){
     
+    if (IsKeyDown(KEY_A)) velocity.x -= 1.0;
+    if (IsKeyDown(KEY_D)) velocity.x += 1.0;
+    if (IsKeyDown(KEY_W)) velocity.y -= 1.0;
+    if (IsKeyDown(KEY_S)) velocity.y += 1.0;
+
     BaseCharacter::tick(deltaTime);
-    // Input
-    Vector2 direction {};
-    if (IsKeyDown(KEY_A)) direction.x -= 1.0;
-    if (IsKeyDown(KEY_D)) direction.x += 1.0;
-    if (IsKeyDown(KEY_W)) direction.y -= 1.0;
-    if (IsKeyDown(KEY_S)) direction.y += 1.0;
-    if (Vector2Length(direction) != 0.0) {
-        world_position = Vector2Add(world_position, Vector2Scale(Vector2Normalize(direction), speed));
-        // Terenary operator
-        // Condition      ? True              : False
-        direction.x < 0.f ? right_left = -1.f : right_left = 1.f;
-        texture = run;
-    }
-    else {
-        texture = idle;
-    }
+    
 }
 
